@@ -55,7 +55,13 @@ void BST<T>::remove(T v) {  // using in-rder successor
       *curr = nodeToRemove->getLeftChild();
       delete nodeToRemove;
     } else {
-      
+      Node<T>* ios = nodeToRemove->getRightChild();
+      while(ios->getLeftChild() != 0) {
+	ios = ios->getLeftChild();
+      }
+      ios->setLeftChild(*(nodeToRemove->getLeftChild()));
+      *curr = nodeToRemove->getRightChild();
+      delete nodeToRemove;
     }
   }
 }
@@ -68,9 +74,11 @@ void BST<T>::print() {
 template <typename T>
 void BST<T>::traversalPrint(Node<T>* root) {
   if(root != 0) {
+
     traversalPrint(root->getLeftChild());
-    std::cout << root->getValue() << std::endl;
+
     traversalPrint(root->getRightChild());
+    std::cout << root->getValue() << std::endl;
   }
 }
 
