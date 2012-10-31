@@ -35,10 +35,29 @@ void BST<T>::insert(T v) {
 }
 
 template <typename T>
-void BST<T>::remove(T v) {
-  Node<T>* temp = new Node<T>(v);
-  root = temp;
-  
+void BST<T>::remove(T v) {  // using in-rder successor
+  Node<T>** curr = &root;
+  while(curr != 0 && (*curr)->getValue() != v) {
+    if(v > (*curr)->getValue())
+      curr = &((*curr)->getRightChild());
+    else 
+      curr = &((*curr)->getLeftChild());
+  }
+  if(curr != 0) {
+    Node<T>* nodeToRemove = *curr;
+    if(nodeToRemove->getLeftChild() == 0 && nodeToRemove->getRightChild() == 0) {
+      delete nodeToRemove;
+      *curr = 0;
+    } else if (nodeToRemove->getLeftChild() == 0) {
+      *curr = nodeToRemove->getRightChild();
+      delete nodeToRemove;
+    } else if (nodeToRemove->getRightChild() == 0) {
+      *curr = nodeToRemove->getLeftChild();
+      delete nodeToRemove;
+    } else {
+      
+    }
+  }
 }
 
 template <typename T>

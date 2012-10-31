@@ -9,8 +9,8 @@ int main() {
   bst->insert(2);
   bst->insert(7);
   bst->insert(12);
-
-
+  bst->remove(6);
+  bst->remove(3);
   bst->print();
   // bst->printTree();
 
