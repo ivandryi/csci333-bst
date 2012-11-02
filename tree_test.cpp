@@ -14,5 +14,5 @@ int main() {
 
   bst->print();
   // bst->printTree();
-
+  delete bst;
 }

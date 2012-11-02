@@ -9,7 +9,7 @@ class BST {
  private:
   Node<T>* root;
   void traversalPrint(Node<T>* root);
-
+  void postOrderDelete(Node<T>* t);
  public:
   BST<T>();
   ~BST<T>();
