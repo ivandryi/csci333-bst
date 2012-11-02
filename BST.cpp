@@ -96,21 +96,27 @@ template <typename T>
 void BST<T>::printTree() {
   std::list<Node<T>* > queue;
   queue.push_front(root);
-  int count = 1;
+  int currentLevel = 1;
+  int nextLevel = 0;
   while(!queue.empty()){
-    std::cout << std::endl;
     Node<T>* val = queue.front();
-    std::cout << val->getValue();
+    std::cout << val->getValue() << " ";
     queue.pop_front();
+    currentLevel = currentLevel - 1;
     
-    if(val->getLeftChild()!=0 || val->getRightChild()!=0){
-      count++;
-    }
-    if(val->getLeftChild()!=0)
+    if(val->getLeftChild()!=0){
     queue.push_back(val->getLeftChild());
-    if(val->getRightChild()!=0)
+    nextLevel++;
+    }
+    if(val->getRightChild()!=0){
     queue.push_back(val->getRightChild());
-
+    nextLevel++;
+    }
+    if(currentLevel == 0) {
+      std::cout << std::endl;
+      currentLevel = nextLevel;
+      nextLevel = 0;
+    }
   }
 }
 
